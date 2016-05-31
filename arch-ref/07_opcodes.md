@@ -78,9 +78,14 @@ Opcode Table
 | MOVCOND   | 16 |     |     |     |     |     |RD2:0|RN2:0|x0B3  |BBB  |0010|
 | MOVTS     | 16 |     |     |     |     |     |RD2:0|MM2:0|x10   |000  |0010|
 | MOVFS     | 16 |     |     |     |     |     |RD2:0|MM2:0|x10   |001  |0010|
+| MOVCOND   | 32 |RD5:3|RN5:3|xxx  | xxx |0010 |RD2:0|RN2:0|x0B3  |BBB  |1111|
+| MOVTS     | 32 |RD5:3|MM5:3|xxx  |xG1:0|0010 |RD2:0|MM2:0|x10   |000  |1111|
+| MOVFS     | 32 |RD5:3|MM5:3|xxx  |xG1:0|0010 |RD2:0|MM2:0|x10   |001  |1111|
 |**JUMP**   |    |     |     |     |     |     |     |     |      |     |    |
 | JR        | 16 |     |     |     |     |     |xxx  |RN2:0|x10   |100  |0010|
 | JALR      | 16 |     |     |     |     |     |xxx  |RN2:0|x10   |101  |0010
+| JR        | 32 |xxx  |RN5:3|xxx  | xxx |0010 |xxx  |RN2:0|x10   |100  |1111|
+| JALR      | 32 |xxx  |RN5:3|xxx  | xxx |0010 |xxx  |RN2:0|x10   |101  |1111|
 |**FLOW**   |    |     |     |     |     |     |     |     |      |     |    |
 | WAND      | 16 |     |     |     |     |     |xxx  |xxx  |x11   |000  |0010|
 | GIE       | 16 |     |     |     |     |     |xxx  |xxx  |011   |001  |0010|
@@ -93,12 +98,6 @@ Opcode Table
 | SWI       | 16 |     |     |     |     |     |xxx  |xxx  |011   |110  |0010|
 | TRAP      | 16 |     |     |     |     |     |xxx  |xxx  |111   |110  |0010|
 | SYNC      | 16 |     |     |     |     |     |xxx  |xxx  |011   |111  |0010|
-| MOVCOND   | 32 |RD5:3|RN5:3|xxx  | xxx |0010 |RD2:0|RN2:0|x0B3  |BBB  |1111|
-| MODE      | 32 |xxI3 |000  |xxx  | x00 |0010 |III  |000  |110   |000  |1111|
-| MOVTS     | 32 |RD5:3|MM5:3|xxx  |xG1:0|0010 |RD2:0|MM2:0|x10   |000  |1111|
-| MOVFS     | 32 |RD5:3|MM5:3|xxx  |xG1:0|0010 |RD2:0|MM2:0|x10   |001  |1111|
-| JR        | 32 |xxx  |RN5:3|xxx  | xxx |0010 |xxx  |RN2:0|x10   |100  |1111|
-| JALR      | 32 |xxx  |RN5:3|xxx  | xxx |0010 |xxx  |RN2:0|x10   |101  |1111|
 
 ----
 Copyright 2008-2016 Adapteva Inc. All rights reserved.
