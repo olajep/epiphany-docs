@@ -1,11 +1,11 @@
 Network-On-Chip ("eMesh")
 ===========================================================================
 
-**Figure 1:** eMesh Overview
+**Figure 3.1:** eMesh Overview
 
 ## Network Topology
 
-The eMesh Network-On-Chip (NOC) shown in Figure 1 employs a bidirectional 2D mesh topology with only nearest-neighbor direct connections. Every router in the mesh is connected to the north, east, west, south, and to a mesh node. Write transactions move through the network, with a latency of 1.5 clock cycles per routing hop. A transaction traversing from the left edge to right edge of a 64-core chip would thus take 12 clock cycles. The edges of the 2D array can be connected to non-Epiphany interface modules, such as SRAM modules, FIFOs, I/O link ports, or standard buses such as AXI. Alternatively, the mesh edge connections can be left unconnected if not needed in the system.
+The eMesh Network-On-Chip (NOC) shown in Figure 3.1 employs a bidirectional 2D mesh topology with only nearest-neighbor direct connections. Every router in the mesh is connected to the north, east, west, south, and to a mesh node. Write transactions move through the network, with a latency of 1.5 clock cycles per routing hop. A transaction traversing from the left edge to right edge of a 64-core chip would thus take 12 clock cycles. The edges of the 2D array can be connected to non-Epiphany interface modules, such as SRAM modules, FIFOs, I/O link ports, or standard buses such as AXI. Alternatively, the mesh edge connections can be left unconnected if not needed in the system.
 
 The eMesh consists of three separate and orthogonal mesh structures, each serving different types of transaction traffic:
 
@@ -17,7 +17,7 @@ The eMesh consists of three separate and orthogonal mesh structures, each servin
 
 Figure 2 shows a connection diagram of the three mesh networks. The example shows an Epiphany chip configuration with 16 mesh nodes per chip. Each mesh node is connected to all three mesh networks. The only difference between larger-array chips and smaller-array chips is in the divisor placement between the on-chip and off-chip transaction routing model. The off-chip boundary is indicated by a dotted line in the figure. 
 
-**Figure 2:** eMesh Network Topology
+**Figure 3.2:** eMesh Network Topology
 
 
 Key features of the eMesh NOC includes:
@@ -38,7 +38,7 @@ Transactions first complete routing along a single row before traveling in a col
 
 Table 1 summarizes the routing rules for the combinations of mesh-node IDs and transaction addresses.
 
-**Table 1:** Routing Protocol Summary
+**Table 3.1:** Routing Protocol Summary
 
 | Column Comparison     | Row Comparison       | Routing Decision
 | ----------------------| --------------       | ----------------
@@ -72,8 +72,7 @@ Read transactions are non-blocking and are initiated as posted read requests to 
 
 The source address is sent along with the read transaction on the outgoing read request. After the data has been read from the read address, the data is returned to the source address on the cMesh or xMesh network. The process is completely non-blocking, allowing transparent interleaving of read transactions from all mesh nodes. 
 
-
-**Figure 3:** Read Request Example
+**Figure 3.3:** Read Request Example
 
 ## Direct Inter-Core Communication
 

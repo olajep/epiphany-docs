@@ -3,7 +3,7 @@ Epiphany Processor Node Architecture
 
 ## Processor Node Overview
 
-Figure 3.1 shows the components at each processor node, which include:
+Figure 4.1 shows the components at each processor node, which include:
 * The eCore RISC CPU
 * Multi-banked local memory
 * Multi-channel DMA engine
@@ -11,7 +11,7 @@ Figure 3.1 shows the components at each processor node, which include:
 * Network interface
 * A Network-On-Chip router 
 
-**Figure 3.1:** Processor Node Overview
+**Figure 4.1:** Processor Node Overview
 
 **CPU**
 
@@ -95,9 +95,9 @@ The crossbar switch within a processor node implements fixed priority arbitratio
 
 ## Overview
 
-The different sub components of the Epiphany architecture are illustrated in Figure 1. The processor includes a general purpose program sequencer, large general purpose register file, integer ALU (IALU), floating point unit (FPU), interrupt controller, timers, and debug unit. 
+The different sub components of the Epiphany architecture are illustrated in Figure 4.1. The processor includes a general purpose program sequencer, large general purpose register file, integer ALU (IALU), floating point unit (FPU), interrupt controller, timers, and debug unit. 
 
-**Figure 1:** eCore Processor Overview
+**Figure 4.2:** eCore Processor Overview
 
 **Program Sequencer**
 The program sequencer supports all standard program flows for a general-purpose CPU, including:
@@ -408,7 +408,7 @@ Instructions are dispatched in-order but can finish out-of-order. The pipeline c
 | 8     | Execution       | E4       | Floating-point result done for rounding mode   |
 
 
-**Figure 2:** Pipeline Graphical View
+**Figure 4.3:** Pipeline Graphical View
 
 In the execution of instructions, the CPU implements an interlocked pipeline. When an instruction executes, the target register of the read operation is marked as busy until the write has been completed. If a subsequent instruction tries to access this register before the new value is present, the pipeline will stall until the previous instruction completes. This stall guarantees that instructions that require the use of data resulting from a previous instruction do not use the previous or invalid data in the register.
 
@@ -482,9 +482,9 @@ In a special case, a 1-cycle penalty occurs for jumps to 32-bit instructions tha
 
 **Overview**
 
-The interrupt controller provides full support for prioritized nested interrupt service routines. Figure 3 shows the behavior of the hardware mechanisms within the interrupt controller and how the user can control the behavior of the system through code. 
+The interrupt controller provides full support for prioritized nested interrupt service routines. Figure 4.4shows the behavior of the hardware mechanisms within the interrupt controller and how the user can control the behavior of the system through code. 
 
-**Figure 3:** Interrupt Service Routine Operation
+**Figure 4.4:** Interrupt Service Routine Operation
 
 
 The following table summarizes the different interrupts and exceptions specified in the interrupt vector table (IVT). All interrupts are edge-based.

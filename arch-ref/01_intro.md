@@ -8,11 +8,11 @@ The Epiphany architecture defines distributed shared-memory computing fabric. It
 
 Figure 1 highlights the key Epiphany components:
 
-* A static dual issiue superscalar, floating-point RISC CPU
+* Distributed shared memory with 32 bytes/cycle of sustained bandwidth per node.
 
-* Distributed memory with 32 bytes/cycle of sustained bandwidth per node.
+* A 2D mesh Network-On-Chip for node-to-node communication
 
-* A 2D mesh Network-On-Chip for node-to-node communication 
+* A static dual issue superscalar floating-point RISC core
 
 The Epiphany architecture was designed for real time signal processing applications. Examples of such application domains include: image processing, communication, sensor signal processing, encryption, and compression. High speed inter-processor communication is supported by the Epiphany architecture’s 2D eMesh Network-On-Chip (NOC), shown in Figure 2, which connects the on-chip processor nodes. The mesh network efficiently handles traffic patterns in high-throughput real-time applications. The network takes advantage of spatial locality and an abundance of short point-to-point on-chip wires to send complete transactions—consisting of source address, destination address, and data—in a single clock cycle. Each routing link can transfer up to 8 bytes of data on every clock cycle, allowing 64 bytes of data to flow through every routing node on every clock cycle. 
 

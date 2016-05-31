@@ -10,6 +10,7 @@ Opcode Table
 * x = don't care (should be zero for for forward compatibility)
 * G = mmr group
 * C3:0 = emesh control mode 3:0
+* <res> = reserved for future use
 
 | INSTR     |SIZE|31:29|28:26|25:23|22:20|19:16|15:13|12:10| 9:7  |6:4  |3:0 |
 | ----------|----|-----|-----|-----|-----|-----|-----|-----|------|-----|----|
@@ -27,13 +28,13 @@ Opcode Table
 | MOV IMM   | 16 |     |     |     |     |     |RD2:0|I7II |III   |  II0|0011|
 | ADD IMM   | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  001|0011|
 | SUB IMM   | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  011|0011|
-| FREE      | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  101|0011|
-| FREE      | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  111|0011|
+| <res>     | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  101|0011|
+| <res>     | 16 |     |     |     |     |     |RD2:0|RN2:0|I2:0  |  111|0011|
 | MOV IMM   | 32 |RD5:3|HI15I|III  |III  |xxxx |RD2:0|III  |III   |  II0|1011|
 | ADD IMM   | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  001|1011|
 | SUB IMM   | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  011|1011|
-| FREE      | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  101|1011|
-| FREE      | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  111|1011|
+| <res>     | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  101|1011|
+| <res>     | 32 |RD5:3|RN5:3|xxI10|III  |IIII |RD2:0|RN2:0|III   |  111|1011|
 |           |    |     |     |     |     |     |     |     |      |     |    |
 | LSR       | 16 |     |     |     |     |     |RD2:0|RN2:0|S4:S2 |S1:00|0110|
 | LSL       | 16 |     |     |     |     |     |RD2:0|RN2:0|S4:S2 |S1:01|0110|
