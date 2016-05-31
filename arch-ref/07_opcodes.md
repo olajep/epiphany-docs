@@ -1,5 +1,6 @@
 Epiphany Opcodes
 ============================================================================
+
 * I = immediate, MSB denoted by I#, LSBs by simple I (example I3III)
 * DM = datasize[1:0]
 * B3:0 = branch code
