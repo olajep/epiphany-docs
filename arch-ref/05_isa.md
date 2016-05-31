@@ -1,4 +1,4 @@
-﻿Epiphany Instruction Set Architecture
+Epiphany Instruction Set Architecture
 ==============================================================================
 
 **Table 5.1:** Instruction Set Assembly Syntax

@@ -1,4 +1,5 @@
-﻿# Reference Manual Changes ("CHANGELOG")
+Reference Manual Changes ("CHANGELOG")
+==============================================================================
 
 | Revision   | Changes                                           | 
 | ---------  | ------------------------------------------------  |

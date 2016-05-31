@@ -1,4 +1,5 @@
-# Epiphany Registers
+Epiphany Registers
+============================================================================
 
 ## Register Summary
 

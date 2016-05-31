@@ -1,4 +1,4 @@
-Opcode Table
+Epiphany Opcodes
 ============================================================================
 * I = immediate, MSB denoted by I#, LSBs by simple I (example I3III)
 * DM = datasize[1:0]

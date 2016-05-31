@@ -1,4 +1,5 @@
-# Epiphany Versions
+Epiphany Versions
+==============================================================================
 
 This chapter documents the differences between different versions of the Epiphany architecture.
 
