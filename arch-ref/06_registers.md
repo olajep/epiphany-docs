@@ -53,9 +53,6 @@ Table 7.1: Register Summary
 | 0xF0708           | MULTICAST     | WR      | Multicast configuration     |
 | 0xF0710           | RMESHCONFIG   | WR      | Rmesh node configuration    |
 | 0xF0720           | XMESHCONFIG   | WR      | XMesh node configuration    |
-| 0xF0730           | MAILBOXLO     | WR      | Mailbox (lower 32 bits)     |
-| 0xF0734           | MAILBOXHI     | WR      | Mailbox (upper 32 bits)     |
-| 0xF0738           | MAILBOXSTAT   | WR      | Mailbox status              |
 
 ## Alphabetical List of Registers
 

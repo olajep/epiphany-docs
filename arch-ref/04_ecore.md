@@ -1,4 +1,5 @@
-# Chapter 5: Epiphany CPU
+Epiphany Processor Node Architecture
+==========================================================================
 
 ## Processor Node Overview
 

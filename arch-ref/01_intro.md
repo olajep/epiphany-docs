@@ -1,5 +1,5 @@
-# Chapter 1: Introduction
-
+Introduction
+=========================================================================
 The Epiphany architecture defines distributed shared-memory computing fabric. It consists of a 2D array of compute nodes connected by a low-latency mesh network-on-chip.
 
 **Figure 1.1:** An Implementation of the Epiphany Architecture

@@ -1,4 +1,5 @@
-# Chapter 4: The Network-On-Chip ("eMesh")
+Network-On-Chip ("eMesh")
+===========================================================================
 
 **Figure 1:** eMesh Overview
 
