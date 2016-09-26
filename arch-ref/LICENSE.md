@@ -1,7 +1,7 @@
 ----
 Copyright 2008-2016 Adapteva Inc. All rights reserved.
 
-Adapteva, the Adapteva Logo, Epiphany, eCore, eMesh, eLink,eHost, and eLib are trademarks of Adapteva Inc. All other products or services mentioned herein may be trademarks of their respective owners.
+Adapteva, the Adapteva Logo, Epiphany, eCore, eMesh, eLink, eHost, and eLib are trademarks of Adapteva Inc. All other products or services mentioned herein may be trademarks of their respective owners.
 
 The product described in this document is subject to continuous developments and improvements. All particulars of the product and its use contained in this document are given by Adapteva Inc. in good faith. For brevity purposes, Adapteva is used in place of Adapteva Inc. in below statements.
 
