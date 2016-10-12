@@ -1,12 +1,17 @@
 Epiphany Application Binary interface
 ============================================================================
 
-This chapter is intended for library developers and users who develop custom assembly routines that can be called from the Epiphany C-compiler. The Epiphany ABI (EABI) is an agreement between developers that ensures interoperability between different libraries. The EABI defines a common procedure call standard and restrictions on data types and alignment.
+This chapter is intended for library developers and users who develop custom
+assembly routines that can be called from the Epiphany C-compiler. The Epiphany
+ABI (EABI) is an agreement between developers that ensures interoperability
+between different libraries. The EABI defines a common procedure call standard
+and restrictions on data types and alignment.
 
 Some of the details defined by the ABI include:
 
 * How the program (caller) should set up the machine state before calling a procedure.
 * How the called procedure (callee) should preserve program state across the call. The right of the called procedure to alter the program state of its caller.
+* Memory regions reserved by the runtime.
 
 Conformance to this standard requires that:
 * At all times, stack limits and basic stack alignment are observed.
@@ -109,6 +114,122 @@ The manner in which a result is returned from a procedure is determined by the t
 * A double-word sized data type (e.g., long long, double) is returned in r0 and r1.
 * A Composite Type not larger than 4 bytes is returned in r0. The format is as if the result had been stored in memory at a word-aligned address and then loaded into r0 with an LDR instruction. Any bits in r0 that lie outside the bounds of the result have unspecified values.
 * A Composite Type larger than 4 bytes, or whose size cannot be determined statically by both caller and callee, is stored in memory at an address passed as an extra argument when the function was called. 
+
+## Reserved memory
+
+The `0x0 - 0x100` memory region is reserved by the Epiphany runtime.  
+
+This includes:
+
+* IVT entries (architecture)
+* Workgroup configuration (e-lib)
+* External memory configuration (e-lib)
+* Loader configuration (runtime)
+
+
+### Interrupt Vector Table (0x00 - 0x27)
+
+Each IVT entry contains a branch instruction to a Interrupt Service Routine.
+See section 4.10 in the Epiphany Architecure Reference Manual for a full
+description of the Epiphany interrupt controller.
+
+
+```c
+struct ivt_table {
+    uint32_t sync;                  // 0x00
+    uint32_t swexp;                 // 0x04
+    uint32_t memfault;              // 0x08
+    uint32_t timer0;                // 0x0C
+    uint32_t timer1;                // 0x10
+    uint32_t message;               // 0x14
+    uint32_t dma0;                  // 0x18
+    uint32_t dma1;                  // 0x1C
+    uint32_t wand;                  // 0x20
+    uint32_t user;                  // 0x24
+};
+```
+
+### Workgroup configuration (0x28-0x4F)
+
+The `e_group_config` structure is used e-lib to determine the workgroup
+configuration. It is populated by e-hal loader.
+
+```c
+typedef struct {
+	e_objtype_t  objtype;           // 0x28
+	e_chiptype_t chiptype;          // 0x2c
+	e_coreid_t   group_id;          // 0x30
+	unsigned     group_row;         // 0x34
+	unsigned     group_col;         // 0x38
+	unsigned     group_rows;        // 0x3c
+	unsigned     group_cols;        // 0x40
+	unsigned     core_row;          // 0x44
+	unsigned     core_col;          // 0x48
+	unsigned     alignment_padding; // 0x4C
+} e_group_config_t;
+
+```
+
+### External memory configuration (0x50-0x57)
+
+The `e_emem_config` structure is used e-lib to find the base of external
+memory. It is populated by e-hal loader.
+
+```c
+typedef struct {
+	e_objtype_t objtype;            // 0x50
+	unsigned    base;               // 0x54
+} e_emem_config_t;
+```
+
+### Loader configuration (0x58-0x67)
+
+The loader configuration structure is used by the loader to instruct the
+runtime (crt0) how it should start the program.
+
+```c
+struct loader_cfg {
+    uint32_t flags;                 // 0x58
+    uint32_t __pad1;                // 0x5C
+    struct loader_args *args_ptr;   // 0x60
+    uint32_t __pad2;                // 0x64
+};
+```
+
+```c
+/* Loader arguments */
+struct loader_args {
+    uint32_t r0;
+    uint32_t r1;
+    uint32_t r2;
+    uint32_t r3;
+    uint32_t function_ptr;
+    uint32_t function_ptr_hi32;    // upper 32 bits
+    uint32_t stack_spill_size;     // (8-byte aligned)
+    uint32_t __pad;                // Reserved, must be 0
+    uint32_t stack_spill_ptr;      // (8-byte aligned)
+    uint32_t stack_spill_ptr_hi32; // upper 32 bits
+} __attribute__((packed)) __attribute__((aligned(4)));
+```
+
+```c
+// Loader flags for crt0
+#define LOADER_BSS_CLEARED_FLAG 1
+#define LOADER_CUSTOM_ARGS_FLAG 2
+```
+
+#### LOADER_BSS_CLEARED_FLAG
+
+Instruct runtime **not** to clear the `.bss` section. Clearing the .bss section
+at runtime can introduce race conditions for threaded programs.
+
+#### LOADER_CUSTOM_ARGS_FLAG
+
+Instead of calling the `main` function the runtime will set up the argument
+registers and stack according to the `loader_args` structure pointed to by
+`loader_cfg`, and call the function pointed to by `function_ptr`.
+See the Procedure Call Standard section above for more details.
+
 
 ----
 Copyright 2008-2016 Adapteva Inc. All rights reserved.
